@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <title>ピアノ</title>
+        <style>
+            * {
+                box-sizing: border-box;
+            }
+
+            #auto {
+                text-align: center;
+                height: 50px;
+                line-height: 50px;
+            }
+
+            #display {
+                background-color: gray;
+                color: white;
+                width: 700px;
+                height: 100px;
+                margin: 20px auto;
+                line-height: 100px;
+                text-align: center;
+                font-size: 30px;
+            }
+
+            .scale{
+                width: 700px;
+                margin: 20px auto;
+                position: relative;
+            }
+
+            .keys {
+                display: flex;
+                position: absolute;
+                z-index: 1;
+                top: 0;
+            }
+
+            .white {
+                height: 350px;
+                width: 100px;
+                border: 1px solid black;
+                top: 0;
+                text-align: center;
+            }
+
+            .key {
+                position: absolute;
+                z-index: 2;
+                bottom: 10px;
+                width: 80px;
+                margin: 0 10px;
+                line-height: 80px;
+                font-size: 20px;
+                border: 1px solid black;
+                border-radius: 5px;
+            }
+
+            .add {
+                display: flex;
+                position: absolute;
+                z-index: 3;
+                margin: 0 50px;
+            }
+
+            .black {
+                background-color: black;
+                height: 200px;
+                width: 70px;
+                margin: 0 15px;
+            }
+            
+            .clear {
+                opacity: 0;
+            }
+
+            .button {
+                width: 300px;
+                margin: 0 auto;
+            }
+
+            #button {
+                width: 300px;
+                height: 50px;
+                margin: 360px auto;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="auto"></div>
+        <div id="display"></div> 
+        <div class="scale">
+            <div class="keys">
+                <div class="white"><p class="key" id="c">ド</p></div>
+                <div class="white"><p class="key" id="d">レ</p></div>
+                <div class="white"><p class="key" id="e">ミ</p></div>
+                <div class="white"><p class="key" id="f">ファ</p></div>
+                <div class="white"><p class="key" id="g">ソ</p></div>
+                <div class="white"><p class="key" id="a">ラ</p></div>
+                <div class="white"><p class="key" id="b">シ</p></div>
+            </div>
+            <div class="add">
+                <div class="black"></div>
+                <div class="black"></div>
+                <div class="black clear"></div>
+                <div class="black"></div>
+                <div class="black"></div>
+                <div class="black"></div>
+            </div>
+        </div>
+        <div class="button">
+            <input type="button" id="button" value="自動演奏ボタン">
+        </div>
+        <script>
+            const music_c = new Audio('sounds/c.mp3');
+            const music_d = new Audio('sounds/d.mp3');
+            const music_e = new Audio('sounds/e.mp3');
+            const music_f = new Audio('sounds/f.mp3');
+            const music_g = new Audio('sounds/g.mp3');
+            const music_a = new Audio('sounds/a.mp3');
+            const music_b = new Audio('sounds/b.mp3');
+
+            function del(){
+                $('#display').text("");
+                music_c.pause();
+                music_d.pause();
+                music_e.pause();
+                music_f.pause();
+                music_g.pause();
+                music_a.pause();
+                music_b.pause();
+                
+            }
+
+            function play_C(){
+                del();
+                $('#display').text("ド");
+                music_c.play();
+                music_c.currentTime = 0;
+            }
+
+            function play_D(){
+                del();
+                $('#display').text("レ");
+                music_d.play();
+                music_d.currentTime = 0;
+            }
+
+            function play_E(){
+                del();
+                $('#display').text("ミ");
+                music_e.play();
+                music_e.currentTime = 0;
+            }
+
+            function play_F(){
+                del();
+                $('#display').text("ファ");
+                music_f.play();
+                music_f.currentTime = 0;
+            }
+
+            function play_G(){
+                del();
+                $('#display').text("ソ");
+                music_g.play();
+                music_g.currentTime = 0;
+            }
+
+            function play_A(){
+                del();
+                $('#display').text("ラ");
+                music_a.play();
+                music_a.currentTime = 0;
+            }
+
+            function play_B(){
+                del();
+                $('#display').text("シ");
+                music_b.play();
+                music_b.currentTime = 0;
+            }
+
+
+            function play(){
+
+                del();
+                let no;
+                function timer(){
+                    no = setTimeout(del,1000);
+                }
+
+                function play_c(){
+                    clearTimeout(no);
+                    play_C();
+                    timer();
+                }
+                $('#c').click(play_c);
+
+                function play_d(){
+                    clearTimeout(no);
+                    play_D();
+                    timer();
+                }
+                $('#d').click(play_d);
+
+                function play_e(){
+                    clearTimeout(no);
+                    play_E();
+                    timer();
+                }
+                $('#e').click(play_e);
+
+                function play_f(){
+                    clearTimeout(no);
+                    play_F();
+                    timer();
+                }
+                $('#f').click(play_f);
+
+                function play_g(){
+                    clearTimeout(no);
+                    play_G();
+                    timer();
+                }
+                $('#g').click(play_g);
+
+                function play_a(){
+                    clearTimeout(no);
+                    play_A();
+                    timer();
+                }
+                $('#a').click(play_a);
+
+                function play_b(){
+                    clearTimeout(no);
+                    play_B();
+                    timer();
+                }
+                $('#b').click(play_b);
+
+            }
+
+            play();
+
+            function stops(){
+                $('#button').val("演奏中止");
+                $('.key').off();
+            }
+
+            let pass_time_s = 0;
+
+            function star_interval(){
+                const stars = ["ド","","ド","","ソ","","ソ","","ラ","","ラ","","ソ","ソ","ソ","ソ"
+                            ,"ファ","","ファ","","ミ","","ミ","","レ","","レ","","ド","ド","ド","ド"
+                            ,"ソ","","ソ","","ファ","","ファ","","ミ","","ミ","","レ","レ","レ","レ"
+                            ,"ソ","","ソ","","ファ","","ファ","","ミ","","ミ","","レ","レ","レ","レ"
+                            ,"ド","","ド","","ソ","","ソ","","ラ","","ラ","","ソ","ソ","ソ","ソ"
+                            ,"ファ","","ファ","","ミ","","ミ","","レ","","レ","","ド","ド","ド","ド","ド","ド","ド","ド"];
+                if(stars[pass_time_s-1] === stars[pass_time_s]){
+                    switch(stars[pass_time_s]){
+                        case "ド":
+                            del();
+                            $('#display').text("ド");
+                            music_c.play();
+                            break;
+                    
+                        case "レ":
+                            del();
+                            $('#display').text("レ");
+                            music_d.play();
+                            break;
+
+                        case "ソ":
+                            del();
+                            $('#display').text("ソ");
+                            music_g.play();
+                            break;
+                    }
+                } else {
+                switch(stars[pass_time_s]){
+                    case "":
+                        del();
+                        break;
+
+                    case "ド":
+                        play_C();
+                        break;
+                    
+                    case "レ":
+                        play_D();
+                        break;
+
+                    case "ミ":
+                        play_E();
+                        break;
+
+                    case "ファ":
+                        play_F();
+                        break;
+
+                    case "ソ":
+                        play_G();
+                        break;
+
+                    case "ラ":
+                        play_A();
+                        break;
+
+                    default:
+                        del();
+                        play();
+                        $('#auto').text("");
+                        $('#button').val("自動演奏ボタン");
+                        pass_time_s = 0;
+                        clearInterval(play_star);
+                }
+                }
+                pass_time_s++
+            }
+
+
+            let play_star;
+            function star(){
+                play_star = setInterval("star_interval()",500);
+                $('#auto').text("自動演奏中です：きらきら星");
+                stops();
+            }
+
+            let pass_time_f = 0;
+            function flower_interval(){
+                const flowers = ["ド","ド","レ","レ","ミ","ミ","ミ","ミ"
+                                ,"ド","ド","レ","レ","ミ","ミ","ミ","ミ"
+                                ,"ソ","ソ","ミ","ミ","レ","レ","ド","ド","レ","レ","ミ","ミ","レ","レ","レ","レ"
+                                ,"ド","ド","レ","レ","ミ","ミ","ミ","ミ"
+                                ,"ド","ド","レ","レ","ミ","ミ","ミ","ミ"
+                                ,"ソ","ソ","ミ","ミ","レ","レ","ド","ド","レ","レ","ミ","ミ","ド","ド","ド","ド"
+                                ,"ソ","","ソ","","ミ","","ソ","","ラ","","ラ","","ソ","ソ","ソ","ソ"
+                                ,"ミ","","ミ","","レ","","レ","","ド","ド","ド","ド","ド","ド","ド","ド","ド","ド","ド","ド","ド","ド","ド","ド"];
+                if(flowers[pass_time_f-1] === flowers[pass_time_f]){
+                    switch(flowers[pass_time_f]){
+                        case "ド":
+                            del();
+                            $('#display').text("ド");
+                            music_c.play();
+                            break;
+                    
+                        case "レ":
+                            del();
+                            $('#display').text("レ");
+                            music_d.play();
+                            break;
+
+                        case "ミ":
+                            del();
+                            $('#display').text("ミ");
+                            music_e.play();
+                            break;
+
+                        case "ソ":
+                            del();
+                            $('#display').text("ソ");
+                            music_g.play();
+                            break;
+
+                        case "ソ":
+                            del();
+                            $('#display').text("ソ");
+                            music_g.play();
+                            break;
+                    }
+                } else {
+                    switch(flowers[pass_time_f]){
+                    case "":
+                        del();
+                        break;
+
+                    case "ド":
+                        play_C();
+                        break;
+                    
+                    case "レ":
+                        play_D();
+                        break;
+
+                    case "ミ":
+                        play_E();
+                        break;
+
+                    case "ソ":
+                        play_G();
+                        break;
+
+                    case "ラ":
+                        play_A();
+                        break;
+
+                    default:
+                        del();
+                        play();
+                        $('#auto').text("");
+                        $('#button').val("自動演奏ボタン");
+                        pass_time_f = 0;
+                        clearInterval(play_flower);
+                    }
+                }
+                pass_time_f++;
+            }
+
+            let play_flower;
+            function flower(){
+                play_flower = setInterval("flower_interval()",250);
+                $('#auto').text("自動演奏中です：チューリップの歌");
+                stops();
+            }
+
+            
+
+            function play_auto(){
+                
+                if($('#button').val()==="演奏中止"){
+
+                    $('#display').text("");
+                    $('#button').val("自動演奏");
+                    play();
+                    clearInterval(play_star);
+                    clearInterval(play_flower);
+                    $('#auto').text("");
+
+                } else if($('#button').val()==="自動演奏") {
+                    if(pass_time_s > 0){
+                        star();
+
+                    } else {
+                        flower();
+                    }
+
+                } else{
+                    let num = Math.floor(Math.random()*10)+1;
+                    if(num % 2 === 0){
+                        star();
+
+                    } else {
+                        flower();
+                    }
+                }
+            }
+
+            $('#button').click(play_auto);
+        </script>
+    </body>
+</html>

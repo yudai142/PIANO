@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>PIANO</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+   <div class="container"> 
+    <div class="piano">
+        <div id="C" class="white-key"><span class="key-name">ド</span></div>
+        <div id="C#" class="black-key key"></div>
+        <div id="D" class="white-key key"><span class="key-name">レ</span></div>
+        <div id="E" class="white-key key"><span class="key-name">ミ</span></div>
+        <div id="E#" class="black-key key"></div>
+        <div id="F" class="white-key key"><span class="key-name">ファ</span></div>
+        <div id="F#" class="black-key key"></div>
+        <div id="G" class="white-key key"><span class="key-name">ソ</span></div>
+        <div id="A" class="white-key key"><span class="key-name">ラ</span></div>
+        <div id="A#" class="black-key key"></div>
+        <div id="B" class="white-key key"><span class="key-name">シ</span></div>
+    </div>
+   </div>
+
+    <div class="screen">
+        <p id="sound">てすと</p>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        const sound=document.getElementById("sound")
+        const c = document.getElementById("C")
+        const d = document.getElementById("D")
+        const e = document.getElementById("E")
+        const f = document.getElementById("F")
+        const g = document.getElementById("G")
+        const a = document.getElementById("A")
+        const b = document.getElementById("B")
+
+        const C = new Audio('sounds/c.mp3');
+        const D = new Audio('sounds/d.mp3');
+        const E = new Audio('sounds/e.mp3');
+        const F = new Audio('sounds/f.mp3');
+        const G = new Audio('sounds/g.mp3');
+        const A = new Audio('sounds/a.mp3');
+        const B = new Audio('sounds/b.mp3');
+        
+        function piano(){
+            sound.textContent="ド";
+            C.play();
+        }
+
+        c.addEventListener("click", piano);
+    </script>
+</body>
+</html>

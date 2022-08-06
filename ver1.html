@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>PIANO</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <input type="button" id="auto_play" value="自動演奏">
+    <p id="music_name"></p>
+   <div class="container"> 
+    <div class="piano">
+        <div id="C" class="white-key"><span class="key-name">ド</span></div>
+        <div id="C#" class="black-key key"></div>
+        <div id="D" class="white-key key"><span class="key-name">レ</span></div>
+        <div id="D#" class="black-key key"></div>
+        <div id="E" class="white-key key"><span class="key-name">ミ</span></div>
+        <div id="F" class="white-key key"><span class="key-name">ファ</span></div>
+        <div id="F#" class="black-key key"></div>
+        <div id="G" class="white-key key"><span class="key-name">ソ</span></div>
+        <div id="G#" class="black-key key"></div>
+        <div id="A" class="white-key key"><span class="key-name">ラ</span></div>
+        <div id="A#" class="black-key key"></div>
+        <div id="B" class="white-key key"><span class="key-name">シ</span></div>
+    </div>
+   </div>
+
+    <div class="screen">
+        <p id="sound"></p>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        const sound=document.getElementById("sound");
+        const auto=document.getElementById("auto_play");
+        let status="stop";
+        
+        const c = document.getElementById("C");
+        const d = document.getElementById("D");
+        const e = document.getElementById("E");
+        const f = document.getElementById("F");
+        const g = document.getElementById("G");
+        const a = document.getElementById("A");
+        const b = document.getElementById("B");
+
+        const C = new Audio('sounds/c.mp3');
+        const D = new Audio('sounds/d.mp3');
+        const E = new Audio('sounds/e.mp3');
+        const F = new Audio('sounds/f.mp3');
+        const G = new Audio('sounds/g.mp3');
+        const A = new Audio('sounds/a.mp3');
+        const B = new Audio('sounds/b.mp3');
+        
+        function cleartext(){
+            sound.textContent=""
+        }
+        function play_c(){
+            sound.textContent="ド";
+            setTimeout(cleartext, 1000);
+            C.load();
+            C.play();
+           
+        }
+        function play_d(){
+            sound.textContent="レ";
+            setTimeout(cleartext, 1000);
+            D.load();
+            D.play();
+        }
+        function play_e(){
+            sound.textContent="ミ";
+            setTimeout(cleartext, 1000);
+            E.load();
+            E.play();
+        }
+        function play_f(){
+            sound.textContent="ファ";
+            setTimeout(cleartext, 1000);
+            F.load();
+            F.play();
+        }
+        function play_g(){
+            sound.textContent="ソ";
+            setTimeout(cleartext, 1000);
+            G.load();
+            G.play();
+        }
+        function play_a(){
+            sound.textContent="ラ";
+            setTimeout(cleartext, 1000);
+            A.load();
+            A.play();
+        }
+        function play_b(){
+            sound.textContent="シ";
+            setTimeout(cleartext, 1000);
+            B.load();
+            B.play();
+        }
+
+        function play_kirakiraboshi(){
+            $('#music_name').text("自動演奏中:きらきら星");
+        new Promise (resolve=>{
+            setTimeout(() => {
+                play_c();
+                resolve();
+            },500);
+        }).then(()=>{
+            return new Promise(resolve=>{
+                setTimeout(()=>{
+                    play_c();
+                    resolve();
+                },500)
+            })
+        }).then(()=>{
+            return new Promise(resolve=>{
+                setTimeout(()=>{
+                    play_g();
+                    resolve();
+                },500)
+            })    
+        }).then(()=>{
+            return new Promise(resolve=>{
+                setTimeout(()=>{
+                    play_g();
+                    resolve();
+                },500)
+            })    
+        }).then(()=>{
+            return new Promise(resolve=>{
+                setTimeout(()=>{
+                    play_a();
+                    resolve();
+                },500)
+            })    
+        }).then(()=>{
+            return new Promise(resolve=>{
+                setTimeout(()=>{
+                    play_a();
+                    resolve();
+                },500)
+            })    
+        }).then(()=>{
+            return new Promise(resolve=>{
+                setTimeout(()=>{
+                    play_g();
+                    resolve();
+                },500)
+            })    
+        }).then(()=>{
+            return new Promise(resolve=>{
+                setTimeout(()=>{
+                    play_f();
+                    resolve();
+                },2000)
+            })    
+        }).then(()=>{
+            return new Promise(resolve=>{
+                setTimeout(()=>{
+                    play_f();
+                    resolve();
+                },500)
+            })    
+        }).then(()=>{
+            return new Promise(resolve=>{
+                setTimeout(()=>{
+                    play_e();
+                    resolve();
+                },500)
+            })    
+        }).then(()=>{
+            return new Promise(resolve=>{
+                setTimeout(()=>{
+                    play_e();
+                    resolve();
+                },500)
+            })    
+        }).then(()=>{
+            return new Promise(resolve=>{
+                setTimeout(()=>{
+                    play_d();
+                    resolve();
+                },500)
+            })    
+        }).then(()=>{
+            return new Promise(resolve=>{
+                setTimeout(()=>{
+                    play_d();
+                    resolve();
+                },500)
+            })    
+        }).then(()=>{
+            return new Promise(resolve=>{
+                setTimeout(()=>{
+                    play_c();
+                    resolve();
+                },500)
+            })    
+        }).then(()=>{
+            return new Promise(resolve=>{
+                setTimeout(()=>{
+                    $('#music_name').text("");
+                    auto.value="自動演奏";
+                    status="stop";
+                },1500)
+            })
+            
+            })
+    }
+
+        function play_tulips(){
+            $('#music_name').text("自動演奏中:チューリップ");
+            new Promise (resolve=>{
+            setTimeout(() => {
+                play_c();
+                resolve();
+            },500);
+        }).then(()=>{
+            return new Promise(resolve=>{
+                setTimeout(()=>{
+                    play_d();
+                    resolve();
+                },500)
+            })
+        }).then(()=>{
+            return new Promise(resolve=>{
+                setTimeout(()=>{
+                    play_e();
+                    resolve();
+                },500)
+            })
+        }).then(()=>{
+            return new Promise(resolve=>{
+                setTimeout(()=>{
+                    play_c();
+                    resolve();
+                },1000)
+            })
+        }).then(()=>{
+            return new Promise(resolve=>{
+                setTimeout(()=>{
+                    play_d();
+                    resolve();
+                },500)
+            })
+        }).then(()=>{
+            return new Promise(resolve=>{
+                setTimeout(()=>{
+                    play_e();
+                    resolve();
+                },500)
+            })
+        }).then(()=>{
+            return new Promise(resolve=>{
+                setTimeout(()=>{
+                    play_g();
+                    resolve();
+                },1000)
+            })
+        }).then(()=>{
+            return new Promise(resolve=>{
+                setTimeout(()=>{
+                    play_e();
+                    resolve();
+                },500)
+            })
+        }).then(()=>{
+            return new Promise(resolve=>{
+                setTimeout(()=>{
+                    play_d();
+                    resolve();
+                },500)
+            })
+        }).then(()=>{
+            return new Promise(resolve=>{
+                setTimeout(()=>{
+                    play_c();
+                    resolve();
+                },500)
+            })
+        }).then(()=>{
+            return new Promise(resolve=>{
+                setTimeout(()=>{
+                    play_d();
+                    resolve();
+                },500)
+            })
+        }).then(()=>{
+            return new Promise(resolve=>{
+                setTimeout(()=>{
+                    play_e();
+                    resolve();
+                },500)
+            })
+        }).then(()=>{
+            return new Promise(resolve=>{
+                setTimeout(()=>{
+                    play_d();
+                    resolve();
+                },500)
+            })
+        }).then(()=>{
+            return new Promise(resolve=>{
+                setTimeout(()=>{
+                    $('#music_name').text("");
+                    auto.value="自動演奏";
+                    status="stop";
+                },1500)
+            })
+            })
+    }    
+        
+        function auto_play(){
+            if(status=="stop"){
+            var num = Math.floor(Math.random() * 11);
+            if(num%2==0){
+                play_kirakiraboshi();
+            }else{
+                play_tulips();
+            }
+            auto.value="演奏中止";
+            status="playing";
+        }else{
+            return;
+        }
+        }
+
+        auto.addEventListener("click", auto_play);
+        c.addEventListener("click", play_c);
+        d.addEventListener("click", play_d);
+        e.addEventListener("click", play_e);
+        f.addEventListener("click", play_f);
+        g.addEventListener("click", play_g);
+        a.addEventListener("click", play_a);
+        b.addEventListener("click", play_b);
+//演奏中の状態で「自動演奏ボタン」を再度クリックすると演奏が止まる
+//自動演奏中は鍵盤をクリックする機能は無効になる
+//要件外機能
+    </script>
+</body>
+</html>
+
