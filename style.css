@@ -2,7 +2,6 @@
     width:100%;
 }
 .container{
-    height:640px;
     align-items:flex-end;
     display: flex;
     margin-bottom:10px;
@@ -16,6 +15,7 @@
     border-bottom: solid rgb(230, 230, 230) 20px;
     transition: 100ms;
     color: black;
+    cursor:pointer;
 }
 .black-key{
     margin-left: -23px;
@@ -58,4 +58,7 @@
     position: relative;
     top:260px;
     left:20px;
+}
+#music_name{
+  height: 24px
 }
