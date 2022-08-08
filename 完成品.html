@@ -185,17 +185,22 @@
     }
     //カエルの歌を演奏する関数
     async function play_frog(cancellationToken) {
-      // $('#music_name').text("自動演奏中:カエルの歌");
-      // status = "playing";
-
       //自動演奏に使用する配列
-      const lists = [play_e, play_f, play_g, play_a, play_g, play_f, play_e, play_c, play_c, play_c, play_c, play_c, play_d, play_e, play_f, play_e, play_d, play_c];
+      const lists = [play_e, play_f, play_g, play_a, play_g, play_f, play_e, play_c, play_c, play_c, play_c, play_c, play_c, play_d, play_d, play_e, play_e, play_f, play_f, play_e, play_d, play_c];
       const times = {
         6: 1000,
         7: 1000,
         8: 1000,
         9: 1000,
-        10: 1000
+        10: 1000,
+        11: 250,
+        12: 250,
+        13: 250,
+        14: 250,
+        15: 250,
+        16: 250,
+        17: 250,
+        18: 250
       };
 
       try {
@@ -209,24 +214,65 @@
         }
         setTimeout(() => {
           add();
-          // $('#music_name').text("");
-          // auto.value = "自動演奏";
-          // status = "stop";
         }, 1000)
       } catch (e) {
         setTimeout(() => {
           add();
-          // $('#music_name').text("");
-          // auto.value = "自動演奏";
-          // status = "stop";
+          $('#music_name').text("");
+          auto.value = "自動演奏";
+          status = "stop";
+        }, 1000)
+      }
+    }
+    async function play_frog_full(cancellationToken) {
+      $('#music_name').text("自動演奏中:カエルの歌");
+      status = "playing";
+
+      //自動演奏に使用する配列
+      const lists = [play_c, play_d, play_e, play_f, play_e, play_d, play_c, play_e, play_f, play_g, play_a, play_g, play_f, play_e, play_c, play_c, play_c, play_c, play_c, play_c, play_d, play_d, play_e, play_e, play_f, play_f, play_e, play_d, play_c];
+      const times = {
+        6: 1000,
+        13: 1000,
+        14: 1000,
+        15: 1000,
+        16: 1000,
+        17: 1000,
+        18: 250,
+        19: 250,
+        20: 250,
+        21: 250,
+        22: 250,
+        23: 250,
+        24: 250,
+        25: 250
+      };
+
+      try {
+        for (let i = 0; i < lists.length; i++) {
+          lists[i]();
+          if (i in times) {
+            await delayAsync(times[i], cancellationToken)
+          } else {
+            await delayAsync(500, cancellationToken)
+          }
+        }
+        setTimeout(() => {
+          add();
+          $('#music_name').text("");
+          auto.value = "自動演奏";
+          status = "stop";
+        }, 1000)
+      } catch (e) {
+        setTimeout(() => {
+          add();
+          $('#music_name').text("");
+          auto.value = "自動演奏";
+          status = "stop";
         }, 1000)
       }
     }
     //チャルメラを演奏する関数
     async function play_ramen(cancellationToken) {
-      // $('#music_name').text("自動演奏中:ラーメン");
-      // status = "playing";
-
       //自動演奏に使用する配列
       const lists = [play_c, play_d, play_e, play_d, play_c, play_d];
       const times = {};
@@ -242,16 +288,46 @@
         }
         setTimeout(() => {
           add();
-          // $('#music_name').text("");
-          // auto.value = "自動演奏";
-          // status = "stop";
         }, 1000)
       } catch (e) {
         setTimeout(() => {
           add();
-          // $('#music_name').text("");
-          // auto.value = "自動演奏";
-          // status = "stop";
+          $('#music_name').text("");
+          auto.value = "自動演奏";
+          status = "stop";
+        }, 1000)
+      }
+    }
+    
+    async function play_ramen_full(cancellationToken) {
+      $('#music_name').text("自動演奏中:ラーメンのチャルメラ");
+      status = "playing";
+
+      //自動演奏に使用する配列
+      const lists = [play_c, play_d, play_e, play_d, play_c,play_c, play_d, play_e, play_d, play_c, play_d];
+      const times = {2:1000,4:500};
+
+      try {
+        for (let i = 0; i < lists.length; i++) {
+          lists[i]();
+          if (i in times) {
+            await delayAsync(times[i], cancellationToken)
+          } else {
+            await delayAsync(150, cancellationToken)
+          }
+        }
+        setTimeout(() => {
+          add();
+          $('#music_name').text("");
+          auto.value = "自動演奏";
+          status = "stop";
+        }, 1000)
+      } catch (e) {
+        setTimeout(() => {
+          add();
+          $('#music_name').text("");
+          auto.value = "自動演奏";
+          status = "stop";
         }, 1000)
       }
     }
@@ -341,16 +417,16 @@
         var num = Math.floor(Math.random() * 4) + 1;
         var ct = new CancellationToken();
         window.cancellationToken = ct;
-        if (num == 1 || num == 3) {
+        if (num == 1) {
           play_kirakiraboshi(ct);
-        } else if (num == 2 || num == 4) {
+        } else if (num == 2) {
           play_tulips(ct);
         }
-        // else if (num == 3) {
-        //   play_ramen(ct)
-        // } else if (num == 4) {
-        //   play_frog(ct)
-        // }
+        else if (num == 3) {
+          play_ramen_full(ct)
+        } else if (num == 4) {
+          play_frog_full(ct)
+        }
         remove()
         auto.value = "演奏中止";
       } else {
